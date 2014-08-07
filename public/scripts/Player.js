@@ -10,6 +10,8 @@ var Player = function(startX, startY, startImageId) {
 		
 	var image = new Image();
 	image.src = "images/"+imageId+".png";
+
+	var text = "holaaa";
 	
 	// Getters and setters
 	var getX = function() {
@@ -18,6 +20,10 @@ var Player = function(startX, startY, startImageId) {
 
 	var getY = function() {
 		return y;
+	};
+
+	var getText = function() {
+		return text;
 	};
 
 	var getImageId = function() {
@@ -31,6 +37,10 @@ var Player = function(startX, startY, startImageId) {
 	var setY = function(newY) {
 		y = newY;
 	};
+
+	var setText = function(newText) {
+		text = newText;
+	}
 
 	// Update player position
 	var update = function(keys) {
@@ -58,15 +68,18 @@ var Player = function(startX, startY, startImageId) {
 	// Draw player
 	var draw = function(ctx) {
     	ctx.drawImage(image, x, y);
+    	ctx.fillText(text, x+30, y-10);
 	};
 
 	// Define which variables and methods can be accessed
 	return {
 		getX: getX,
 		getY: getY,
+		getText: getText,
 		getImageId: getImageId,
 		setX: setX,
 		setY: setY,
+		setText: setText,
 		update: update,
 		draw: draw
 	}

@@ -3,8 +3,9 @@
 **************************************************/
 var Player = function(startX, startY, startImageId) {
 	var x = startX,
-		y = startY,
+		y = startY,		
 		imageId = startImageId,
+		text,
 		id;
 
 	// Getters and setters
@@ -14,6 +15,10 @@ var Player = function(startX, startY, startImageId) {
 
 	var getY = function() {
 		return y;
+	};
+
+	var getText = function() {
+		return text;
 	};
 
 	var getImageId = function() {
@@ -28,13 +33,19 @@ var Player = function(startX, startY, startImageId) {
 		y = newY;
 	};
 
+	var setText = function(newText) {
+		text = newText;
+	}
+
 	// Define which variables and methods can be accessed
 	return {
 		getX: getX,
 		getY: getY,
+		getText: getText,
 		getImageId: getImageId,
 		setX: setX,
 		setY: setY,
+		setText: setText,
 		id: id
 	}
 };

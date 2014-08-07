@@ -52,6 +52,9 @@ function onSocketConnection(client) {
 
 	// Listen for move player message
 	client.on("move player", onMovePlayer);
+
+	// Listen for chat player message
+	client.on("chat player", onChatPlayer);
 };
 
 // Socket client has disconnected
@@ -110,6 +113,22 @@ function onMovePlayer(data) {
 
 	// Broadcast updated position to connected socket clients
 	this.broadcast.emit("move player", {id: movePlayer.id, x: movePlayer.getX(), y: movePlayer.getY()});
+};
+
+// Player chat
+function onChatPlayer(data) {
+	// Find player in array
+	var chatPlayer = playerById(this.id);
+
+	// Player not found
+	if (!chatPlayer) {
+		console.log("Player not found: "+this.id);
+		return;
+	};
+
+	chatPlayer.setText(data.text);
+
+	this.broadcast.emit("chat player", {id: chatPlayer.id, text: chatPlayer.getText()});
 };
 
 

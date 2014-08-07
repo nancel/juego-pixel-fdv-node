@@ -70,6 +70,9 @@ var setEventHandlers = function() {
 
 	// Player removed message received
 	socket.on("remove player", onRemovePlayer);
+
+	// Player chat message received
+	socket.on("chat player", onChatPlayer);
 };
 
 // Keyboard key down
@@ -85,6 +88,20 @@ function onKeyup(e) {
 		keys.onKeyUp(e);
 	};
 };
+
+function chat(e) {
+	if (e.keyCode == 13) {
+	  var ti = document.getElementById("textImput");
+	  if (localPlayer) {
+			localPlayer.setText(ti.value);
+		};
+		ti.value = "";
+
+		socket.emit("chat player", {text: localPlayer.getText()});
+	  
+	  return false;
+	}
+}
 
 // Browser window resize
 function onResize(e) {
@@ -132,6 +149,18 @@ function onMovePlayer(data) {
 	movePlayer.setX(data.x);
 	movePlayer.setY(data.y);
 };
+
+function onChatPlayer(data) {
+	var chatPlayer = playerById(data.id);
+
+	// Player not found
+	if (!chatPlayer) {
+		console.log("Player not found: "+data.id);
+		return;
+	};
+
+	chatPlayer.setText(data.text);
+}
 
 // Remove player
 function onRemovePlayer(data) {
