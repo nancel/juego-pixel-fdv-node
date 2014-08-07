@@ -98,9 +98,19 @@ function chat(e) {
 		ti.value = "";
 
 		socket.emit("chat player", {text: localPlayer.getText()});
+
+		setInterval(function(){clearChat()}, 3000);
 	  
 	  return false;
 	}
+}
+
+function clearChat() {
+	if (localPlayer) {
+		localPlayer.setText("");
+	};
+
+	socket.emit("chat player", {text: ""});
 }
 
 // Browser window resize
