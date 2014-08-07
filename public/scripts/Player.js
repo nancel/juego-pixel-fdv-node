@@ -11,7 +11,7 @@ var Player = function(startX, startY, startImageId) {
 	var image = new Image();
 	image.src = "images/"+imageId+".png";
 
-	var text = "holaaa";
+	var text = "";
 	
 	// Getters and setters
 	var getX = function() {

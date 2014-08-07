@@ -29,7 +29,7 @@ function init() {
 	// placed right on the egde of the screen
 	var startX = Math.round(Math.random()*(canvas.width-5)),
 		startY = Math.round(Math.random()*(canvas.height-5)),
-		imageId = Math.floor(Math.random() * 3) + 1;
+		imageId = Math.floor(Math.random() * 6) + 1;
 
 	// Initialise the local player
 	localPlayer = new Player(startX, startY, imageId);
@@ -89,6 +89,8 @@ function onKeyup(e) {
 	};
 };
 
+var chatInterval; 
+
 function chat(e) {
 	if (e.keyCode == 13) {
 	  var ti = document.getElementById("textImput");
@@ -98,8 +100,12 @@ function chat(e) {
 		ti.value = "";
 
 		socket.emit("chat player", {text: localPlayer.getText()});
+		
+		if (chatInterval){
+			window.clearInterval(chatInterval);	
+		}
 
-		setInterval(function(){clearChat()}, 3000);
+		chatInterval = setInterval(function(){clearChat()}, 3000);
 	  
 	  return false;
 	}
@@ -111,6 +117,8 @@ function clearChat() {
 	};
 
 	socket.emit("chat player", {text: ""});
+
+	window.clearInterval(chatInterval);
 }
 
 // Browser window resize
