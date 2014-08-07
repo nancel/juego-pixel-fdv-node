@@ -35,7 +35,7 @@ function init() {
 	localPlayer = new Player(startX, startY, imageId);
 
 	// Initialise socket connection
-	socket = io.connect("http://localhost:5000", {transports: ["websocket"]});
+	socket = io.connect("http://lit-forest-5109.herokuapp.com/", {transports: ["websocket"]});
 
 	// Initialise remote players array
 	remotePlayers = [];
