@@ -1,0 +1,27 @@
+{
+  "name": "juego-pixel-fdv-node",
+  "version": "0.0.0",
+  "description": "juego-pixel-fdv-node ====================",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nancel/juego-pixel-fdv-node.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/nancel/juego-pixel-fdv-node/issues"
+  },
+  "dependencies": {
+    "ejs": "~1.0.0",
+    "logfmt": "~1.1.2",
+    "express": "~4.8.1",
+    "socket.io": "~1.0.6"
+  },  
+  "engines": {
+    "node": "0.10.x"
+  }
+}
